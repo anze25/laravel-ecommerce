@@ -126,8 +126,9 @@
                             <a class="dropdown-item" href="{{ route('admin.profile') }}"><i
                                     class="ti-user text-muted mr-2"></i>
                                 Profile</a>
-                            <a class="dropdown-item" href="#"><i class="ti-wallet text-muted mr-2"></i> My
-                                Wallet</a>
+                            <a class="dropdown-item" href="{{ route('admin.change.password') }}"><i
+                                    class="ti-wallet text-muted mr-2"></i> My
+                                Change Password</a>
                             <a class="dropdown-item" href="#"><i class="ti-settings text-muted mr-2"></i>
                                 Settings</a>
                             <div class="dropdown-divider"></div>
