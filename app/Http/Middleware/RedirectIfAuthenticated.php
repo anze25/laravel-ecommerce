@@ -23,10 +23,11 @@ class RedirectIfAuthenticated
 
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
-                return redirect($guard.'/dashboard');
+                return redirect('/dashboard');
+                // return redirect($guard.'/dashboard'); // Brez web pred dashboard
             }
         }
- 
+
         return $next($request);
     }
 }

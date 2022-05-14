@@ -17,6 +17,7 @@ mix.js("resources/js/app.js", "public/js")
         require("tailwindcss"),
         require("autoprefixer"),
     ])
+    // .browserSync("localhost");
     .browserSync("ecommerce.test");
 
 if (mix.inProduction()) {
