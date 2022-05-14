@@ -22,35 +22,41 @@
 
                 <div class="col-md-6">
                     <div class="card">
-                        <h3 class="text-center"><span
-                                class="text-danger">Hi....</span><strong>{{ Auth::user()->name }}</strong> Update Your
-                            Profile </h3>
+                        <h3 class="text-center"><span class="text-danger">Change Password</span></h3>
 
                         <div class="cart-body">
-                            <form method="post" action="{{ route('user.profile.store') }}" enctype="multipart/form-data">
+                            <form method="post" action="{{ route('user.password.update') }}">
                                 @csrf
 
                                 <div class="form-group">
-                                    <label class="info-title" for="exampleInputEmail1">Name </label>
-                                    <input type="text" name="name" class="form-control" value="{{ $user->name }}">
+                                    <label class="info-title" for="current_password">Current Password </label>
+                                    <input id="current_password" type="password" name="oldpassword" class="form-control">
+                                    @error('oldpassword')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong></span>
+                                    @enderror
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="info-title" for="exampleInputEmail1">Email </label>
-                                    <input type="email" name="email" class="form-control" value="{{ $user->email }}">
+                                    <label class="info-title" for="password">New Password' </label>
+                                    <input type="password" id="password" name="password" class="form-control">
+                                    @error('password')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong></span>
+                                    @enderror
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="info-title" for="exampleInputEmail1">Phone </label>
-                                    <input type="text" name="phone" class="form-control" value="{{ $user->phone }}">
+                                    <label class="info-title" for="password_confirmation">Confirm Password </label>
+                                    <input type="password" id="password_confirmation" name="password_confirmation"
+                                        class="form-control">
+                                    @error('password_confirmation')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong></span>
+                                    @enderror
                                 </div>
 
-                                <div class="form-group">
-                                    <label class="info-title" for="exampleInputEmail1">User Image </label>
-                                    <input type="file" name="profile_photo_path" class="form-control">
-                                </div>
-
-                                <div class="form-group">
+                                <div class=" form-group">
                                     <button type="submit" class="btn btn-danger">Update</button>
                                 </div>
 

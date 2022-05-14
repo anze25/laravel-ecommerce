@@ -34,24 +34,34 @@ class IndexController extends Controller
         return view('frontend.profile.user_profile', compact('user'));
     }
 
-
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function UserChangePassword()
     {
-        //
+        $id = Auth::user()->id;
+        $user = User::find($id);
+
+        return view('frontend.profile.change_password', compact('user'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    public function UserPasswordUpdate(Request $request)
+    {
+
+        $validateData = $request->validate([
+            'oldpassword' => 'required',
+            'password'  => 'required|confirmed',
+        ]);
+
+        $hashedPassword = Auth::user()->password;
+        if (Hash::check($request->oldpassword, $hashedPassword)) {
+            $user = User::find(Auth::id());
+            $user->password = Hash::make($request->password);
+            $user->save();
+            Auth::logout();
+            return redirect()->route('user.logout');
+        } else {
+            return redirect()->back();
+        }
+    }   // end method
+
     public function UserProfileStore(Request $request)
     {
         $data = User::find(Auth::user()->id);
